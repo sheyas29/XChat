@@ -50,14 +50,14 @@ async function userRegisterController(req, res) {
     return res
       .cookie('token', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
+        secure: true,
+        sameSite: 'none',
         maxAge: 2 * 60 * 60 * 1000,
       })
       .cookie('accessToken', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
+        secure: true,
+        sameSite: 'none',
         maxAge: 2 * 60 * 60 * 1000,
       })
       .status(201)
@@ -113,14 +113,14 @@ async function userLoginController(req, res) {
     return res
       .cookie('token', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
+        secure: true,
+        sameSite: 'none',
         maxAge: 2 * 60 * 60 * 1000,
       })
       .cookie('accessToken', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
+        secure: true,
+        sameSite: 'none',
         maxAge: 2 * 60 * 60 * 1000,
       })
       .status(200)
@@ -185,13 +185,13 @@ async function userLogoutController(req, res) {
     res
       .clearCookie('token', {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
+        secure: true,
+        sameSite: 'none',
       })
       .clearCookie('accessToken', {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
+        secure: true,
+        sameSite: 'none',
       })
       .status(200)
       .json({
@@ -201,7 +201,7 @@ async function userLogoutController(req, res) {
   } catch (err) {
     return res.status(500).json({
       success: false,
-      message: 'Something went wrong while fetching the user',
+      message: 'Something went wrong while logging out',
     });
   }
 }
